@@ -5,8 +5,8 @@ import { useState } from "react";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  const [time1, setTime1] = useState(-1);
-  const [distance1, setDistance1] = useState(-1);
+  const [time1, setTime1] = useState();
+  const [distance1, setDistance1] = useState();
   return (
     <div className={styles.container}>
       <Head>
@@ -62,9 +62,9 @@ export default function Home() {
             {time1 > 0 && distance1 > 0
               ? Math.round(((distance1 * 681.6632) / time1) * 100) / 100 +
                 " mph"
-              : "Please enter valid values above."}
+              : ""}
           </Text>
-          <Text h3>+ 3 mph</Text>
+          <Text h3>{time1 > 0 && distance1 > 0 ? "+ 3 mph" : ""}</Text>
           <Text
             size={80}
             css={{
@@ -76,9 +76,15 @@ export default function Home() {
               ? Math.round(((distance1 * 681.6632) / time1) * 100) / 100 +
                 3 +
                 " mph"
-              : "Please enter valid values above."}
+              : ""}
           </Text>
         </Container>
+        <Spacer />
+        <Text h4>
+          Factors that may deflate this calculation ~3 mph include the diagonal
+          trajectory of pitch and air resistance (this is a calculation of
+          average speed).
+        </Text>
       </Container>
     </div>
   );
